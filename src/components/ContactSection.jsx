@@ -33,21 +33,41 @@ const ContactSection = () => {
     setFormData((prev) => ({ ...prev, interest: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      toast.success("Thank you for your inquiry! We'll be in touch soon.");
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        interest: "",
-        message: ""
+    const formPayload = {
+      ...formData,
+      access_key: "0c8bc580-0e84-4045-b3ed-929fe01cfeea"
+    };
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formPayload)
       });
+
+      if (response.ok) {
+        toast.success("Thank you for your inquiry! We'll be in touch soon.");
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          interest: "",
+          message: ""
+        });
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Network error. Please try again.");
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -61,38 +81,9 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
-          <div className="lg:col-span-2 space-y-8">
-            <h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
-
-            <div className="flex items-start space-x-4">
-              <Mail className="h-6 w-6 text-purple mt-0.5" />
-              <div>
-                <h4 className="font-medium">Email Us</h4>
-                <p className="text-gray-600">info@glean.ai</p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-4">
-              <Phone className="h-6 w-6 text-purple mt-0.5" />
-              <div>
-                <h4 className="font-medium">Call Us</h4>
-                <p className="text-gray-600">(555) 123-4567</p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-4">
-              <MapPin className="h-6 w-6 text-purple mt-0.5" />
-              <div>
-                <h4 className="font-medium">Visit Us</h4>
-                <p className="text-gray-600">
-                  100 AI Innovation Center<br />
-                  San Francisco, CA 94103
-                </p>
-              </div>
-            </div>
-          </div>
-
+        
+        <div className=" flex flex-row justify-center grid-cols-1 lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+          
           <div className="lg:col-span-3 bg-white p-8 rounded-xl shadow-md">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -168,12 +159,13 @@ const ContactSection = () => {
                 className="w-full py-6 bg-blue-600 hover:bg-blue-700 text-white"
                 disabled={isSubmitting}
               >
-               Request Demo
+                {isSubmitting ? "Submitting..." : "Request Demo"}
               </Button>
             </form>
           </div>
         </div>
-      </div>
+        </div>
+    
     </section>
   );
 };

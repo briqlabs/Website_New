@@ -46,17 +46,47 @@ const DemoRequestForm = ({ onSuccess }) => {
   });
 
   const onSubmit = async (data) => {
-    console.log("Form submitted:", data);
+  const payload = {
+    access_key: "70757d1a-2bad-48c9-bd42-23357cf563fa",
+    name: data.fullName,
+    email: data.email,
+    company: data.company,
+    interest: data.solution,
+    message: data.message,
+  };
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    toast({
-      title: "Request submitted",
-      description: "We'll get back to you soon!",
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
     });
 
-    onSuccess();
-  };
+    if (response.ok) {
+      toast({
+        title: "Request submitted",
+        description: "Thank you for your inquiry! We'll get back to you soon.",
+      });
+      form.reset(); // Reset form after success
+      if (onSuccess) onSuccess(); // Optional success callback
+    } else {
+      toast({
+        title: "Submission failed",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    }
+  } catch (error) {
+    toast({
+      title: "Network error",
+      description: "Unable to submit the form. Please try again later.",
+      variant: "destructive",
+    });
+  }
+};
+
 
   return (
     <div className="p-6">

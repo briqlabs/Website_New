@@ -8,26 +8,23 @@ import ScrollToTop from "./ScrollToTop";
 import NotFound from "./pages/NotFound";
 import BlogsPage from "./pages/BlogsPage";
 import BlogPost from "./pages/BlogPost";
-import SettingsPage from "./pages/SettingsPage";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
-
-
   return (
-    <Router>
-    <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Index />} >
-          <Route index element={< Home />} />
-          <Route path="/pricing" element={< PricingSection />} />
-        </Route>
-        <Route path="/blogs" element={<BlogsPage />} />
-        <Route path="/blog/:id" element={<BlogPost />} />
-        <Route path="/settings" element={<SettingsPage />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+      <Router>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Index />} >
+            <Route index element={< Home />} />
+            <Route path="/pricing" element={< PricingSection />} />
+          </Route>
+          <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
   )
 }
 

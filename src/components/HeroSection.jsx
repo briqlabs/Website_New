@@ -2,8 +2,15 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, MousePointer, RefreshCw, Shield, Sparkles } from "lucide-react";
 import DemoDialog from "./DemoDialog";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
+  const handleLogin =  () => {
+    window.location.href = 'http://localhost:3000';
+  }
+
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   return (
     <section className="pt-32 pb-20 md:pt-36 md:pb-28 overflow-hidden relative">
@@ -35,7 +42,9 @@ const HeroSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-6 rounded-xl text-lg group">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-6 rounded-xl text-lg group"
+               onClick={handleLogin}
+              >
                 Start For Free
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>

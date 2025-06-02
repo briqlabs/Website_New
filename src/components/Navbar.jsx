@@ -32,7 +32,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center" onClick={() => navigate("/")}>
           <a href="#" className="flex items-center">
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">BriqLabs</span>
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Briqlabs</span>
           </a>
         </div>
 
@@ -58,6 +58,7 @@ const Navbar = () => {
           <button onClick={() => scrollToSection("#security")} className="text-gray-700 hover:text-blue-600 transition-colors">Security</button>
           <button onClick={() => scrollToSection("#pricing")} className="text-gray-700 hover:text-blue-600 transition-colors">Pricing</button>
           <button onClick={() => scrollToSection("#faq")} className="text-gray-700 hover:text-blue-600 transition-colors">FAQ</button>
+           <button onClick={() => scrollToSection("#contact")} className="text-gray-700 hover:text-blue-600 transition-colors">Contact Us</button>
           <Button
             className="bg-blue-600 hover:bg-blue-700 text-white"
             onClick={() => navigate("/pricing")}
@@ -101,6 +102,7 @@ const Navbar = () => {
             <button onClick={() => { scrollToSection("#security"); setIsMenuOpen(false); }} className="text-gray-700 hover:text-blue-600 py-2 px-4 rounded-md">Security</button>
             <button onClick={() => { scrollToSection("#pricing"); setIsMenuOpen(false); }} className="text-gray-700 hover:text-blue-600 py-2 px-4 rounded-md">Pricing</button>
             <button onClick={() => { scrollToSection("#faq"); setIsMenuOpen(false); }} className="text-gray-700 hover:text-blue-600 py-2 px-4 rounded-md">FAQ</button>
+             <button onClick={() => { scrollToSection("#contact"); setIsMenuOpen(false); }} className="text-gray-700 hover:text-blue-600 py-2 px-4 rounded-md">ContactUs</button>
             <Button
               className="bg-blue-600 hover:bg-blue-700 text-white w-full"
               onClick={() => navigate("/pricing")}
