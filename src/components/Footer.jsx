@@ -13,14 +13,14 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-blue-900 text-white pt-16 pb-8">
+    <footer className="bg-blue-900 text-white pt-12 pb-6">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-          <div className="md:col-span-1">
-            <a href="#" className="inline-block mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="md:col-span-2">
+            <a href="#" className="inline-block mb-4">
               <span className="text-2xl font-bold text-white">Briq<span className="text-cyan-400">labs</span></span>
             </a>
-            <p className="text-blue-100 mb-6">
+            <p className="text-blue-100 mb-4">
               Enterprise AI solutions that transform businesses through intelligent automation and data-driven insights.
             </p>
             <div className="flex space-x-4">
@@ -45,28 +45,22 @@ const Footer = () => {
             </div>
           </div>
 
-    
           <div className="md:col-span-1">
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-3">
               <li><a href="#" className="text-blue-200 hover:text-white transition-colors">About Us</a></li>
               <li><a href="#blog" className="text-blue-200 hover:text-white transition-colors">Blog</a></li>
               <li><a href="#contact" className="text-blue-200 hover:text-white transition-colors">Contact</a></li>
+              <li><a href="/privacy-policy" className="text-blue-200 hover:text-white transition-colors">Privacy Policy</a></li>
             </ul>
           </div>
-
-         
         </div>
 
-        <div className="mt-16 pt-8 border-t border-blue-800">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="mt-8 pt-6 border-t border-blue-800">
+          <div className="flex flex-col md:flex-row justify-center items-center">
             <p className="text-blue-300 text-sm">
               &copy; {new Date().getFullYear()} Briqlabs. All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="/privacy-policy" className="text-blue-300 hover:text-white text-sm transition-colors">Privacy Policy</a>
-            
-            </div>
           </div>
         </div>
       </div>

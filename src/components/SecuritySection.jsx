@@ -46,7 +46,7 @@ const SecuritySection = () => {
               Enterprise-grade<br />security & privacy
             </h2>
             <p className="text-xl text-gray-600 mb-4 max-w-md">
-              We take security and compliance seriously. Chatbase is SOC 2 Type II and GDPR compliant, trusted by thousands of businesses to build secure and compliant AI Agents.
+              We take security and compliance seriously. Briqlabs is SOC 2 Type II and GDPR compliant, trusted by thousands of businesses to build secure and compliant AI Agents.
             </p>
             <div className="flex gap-6 mt-8">
               <img src="/aicpa.png" alt="AICPA Logo" className="h-24 w-24 object-contain" />

@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import BlogsPage from "./pages/BlogsPage";
 import BlogPost from "./pages/BlogPost";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Payment from "./pages/Payment";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/payment" element={<Payment />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

@@ -1,3 +1,6 @@
+
+
+import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
@@ -21,18 +24,7 @@ const plans = [
     name: "Free",
     price: "$0",
     description: "Best for initial exploration and trials",
-    included: [
-      true,  // 50 conversations
-      true,  // 100 Docs/URLs, no updates
-      true,  // Briqlabs AI Agent
-      true,  // Community support
-      false, // Multiple app integration
-      false, // 100% hallucination free AI
-      false, // Unlimited knowledge uploads & updates
-      false, // 24x7 support
-      false, // AWS, Azure or Google Cloud
-      false, // Self host LLM option
-    ],
+    included: [true, true, true, true, false, false, false, false, false, false],
     cta: "Get Started",
     isPopular: false,
   },
@@ -40,18 +32,7 @@ const plans = [
     name: "Pro",
     price: "$0.59",
     description: "Perfect for professionals and teams",
-    included: [
-      true,  // 50 conversations
-      true,  // 100 Docs/URLs, no updates
-      true,  // Briqlabs AI Agent
-      true,  // Community support
-      true,  // Multiple app integration
-      true,  // 100% hallucination free AI
-      true,  // Unlimited knowledge uploads & updates
-      true,  // 24x7 support
-      true,  // AWS, Azure or Google Cloud
-      false, // Self host LLM option
-    ],
+    included: [true, true, true, true, true, true, true, true, true, false],
     cta: "Subscribe Now",
     isPopular: true,
   },
@@ -59,18 +40,7 @@ const plans = [
     name: "Enterprise",
     price: "Pay as you go",
     description: "Customized solutions for large-scale businesses",
-    included: [
-      true,  // 50 conversations
-      true,  // 100 Docs/URLs, no updates
-      true,  // Briqlabs AI Agent
-      true,  // Community support
-      true,  // Multiple app integration
-      true,  // 100% hallucination free AI
-      true,  // Unlimited knowledge uploads & updates
-      true,  // 24x7 support
-      true,  // AWS, Azure or Google Cloud
-      true,  // Self host LLM option
-    ],
+    included: [true, true, true, true, true, true, true, true, true, true],
     cta: "Contact Sales",
     isPopular: false,
   },
@@ -87,7 +57,7 @@ const FeatureItem = ({ included, feature }) => (
   </li>
 );
 
-const PlanCard = ({ plan }) => (
+const PlanCard = ({ plan, onSelect }) => (
   <Card className={`w-full ${plan.isPopular ? "border-blue-600 shadow-lg relative" : "border-gray-200"} hover:shadow-xl`}>
     {plan.isPopular && (
       <div className="absolute -top-3 left-0 right-0 mx-auto w-fit bg-blue-600 text-white text-xs px-3 py-1 rounded-full">
@@ -99,7 +69,9 @@ const PlanCard = ({ plan }) => (
       <p className="text-gray-500 text-sm">{plan.description}</p>
       <div className="mt-4 flex items-baseline justify-center">
         <span className="text-3xl font-bold">{plan.price}</span>
-        {plan.price !== "Get a Quote" && <span className="ml-1 text-gray-500 text-sm">/conversation</span>}
+        {plan.price !== "Pay as you go" && (
+          <span className="ml-1 text-gray-500 text-sm">/conversation</span>
+        )}
       </div>
     </CardHeader>
     <CardContent className="pt-6">
@@ -110,7 +82,14 @@ const PlanCard = ({ plan }) => (
       </ul>
     </CardContent>
     <CardFooter className="pt-6 pb-8">
-      <Button className={`w-full py-6 ${plan.isPopular ? "bg-blue-600 hover:bg-blue-700" : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"}`}>
+      <Button
+        className={`w-full py-6 ${
+          plan.isPopular
+            ? "bg-blue-600 hover:bg-blue-700"
+            : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"
+        }`}
+        onClick={() => onSelect(plan.name.toLowerCase())}
+      >
         {plan.cta}
       </Button>
     </CardFooter>
@@ -118,17 +97,25 @@ const PlanCard = ({ plan }) => (
 );
 
 const PricingSection = () => {
+ const navigate = useNavigate();
+
+const handleSelect = (planName) => {
+  navigate(`/payment?plan=${encodeURIComponent(planName)}`);
+};
+
   return (
     <section id="pricing" className="py-20 bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <Badge className="bg-blue-100 text-blue-700 mb-3">PRICING</Badge>
           <h2 className="text-4xl font-bold">Choose the Right Plan</h2>
-          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">Start for free or scale as you grow with our Pro and Enterprise plans.</p>
+          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+            Start for free or scale as you grow with our Pro and Enterprise plans.
+          </p>
         </div>
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan, idx) => (
-            <PlanCard key={idx} plan={plan} />
+            <PlanCard key={idx} plan={plan} onSelect={handleSelect} />
           ))}
         </div>
       </div>
