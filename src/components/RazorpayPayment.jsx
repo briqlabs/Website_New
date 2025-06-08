@@ -85,7 +85,7 @@ const RazorpayPayment = ({ selectedPlan = "pro" }) => {
 
     try {
       const options = {
-        key: "rzp_test_your_key_here", // Replace with your Razorpay key
+        key: "zxPZYX3CS2QniXh1Y0nimVRN", // Replace with your Razorpay key
         amount: plan.price * 100,
         currency: "INR",
         name: "Briqlabs",

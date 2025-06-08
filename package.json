@@ -1,5 +1,5 @@
 {
-  "name": "briqfrontend",
+  "name": "website_new",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -27,6 +27,7 @@
     "clsx": "^2.1.1",
     "firebase": "^11.7.3",
     "lucide-react": "^0.487.0",
+    "razorpay": "^2.9.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.55.0",
